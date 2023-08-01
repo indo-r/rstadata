@@ -1,7 +1,9 @@
 #' Get list of domain
 #'
 #' @description Retrieve list of national wide BPS domain.
-#' @param token App ID.
+#' @param type Type to show domain
+#' @param ... Any acceptable WebAPI parameters
+#' @param token App ID
 #'
 #' @examples
 #' \dontrun{

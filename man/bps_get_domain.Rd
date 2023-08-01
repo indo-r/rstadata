@@ -4,17 +4,21 @@
 \alias{bps_get_domain}
 \title{Get list of domain}
 \usage{
-bps_get_domain(token)
+bps_get_domain(type = "all", ..., token)
 }
 \arguments{
-\item{token}{App ID. Please register to https://webapi.bps.go.id/developer/register}
+\item{type}{Type to show domain}
+
+\item{...}{Any acceptable WebAPI parameters}
+
+\item{token}{App ID}
 }
 \description{
 Retrieve list of national wide BPS domain.
 }
 \examples{
 \dontrun{
-bps_get_domain(token = Sys.getenv("BPS_APP_ID"))
+bps_get_domain(token = "your_secret_token")
 }
 
 }

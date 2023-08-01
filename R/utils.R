@@ -2,7 +2,7 @@
 #'
 #' @description Construct query for request
 #' @param service Service being used
-#' @param ... Any WebAPI parameters
+#' @param ... Any acceptable WebAPI parameters
 #' @param token App ID
 #'
 build_query <- function(service, ..., token = NULL) {
