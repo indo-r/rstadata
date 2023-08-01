@@ -12,23 +12,23 @@
 #' @importFrom dplyr mutate case_when
 #' @export
 #'
-bps_get_domain <- function(token) {
-  base_url <- "https://webapi.bps.go.id/v1/"
-  resp <- request(base_url) |>
-    req_url_path_append("api/domain/type/all/key/") |>
-    req_url_path_append(token) |>
+bps_get_domain <- function(token, type = "all", ...) {
+  if (missing(token)) {
+    stop(message_token())
+  }
+  allowed_type <- c("all", "prov", "kab", "kabbyprov")
+  match.arg(type, allowed_type)
+  resp <- build_query(service = "domain", token = token, type = type, ...) |>
     req_perform()
   if (resp_status(resp) != 200) {
-    message(sprintf("Response status %s", resp_status(resp)))
-    return(NULL)
+    stop(sprintf("Response status %s", resp_status(resp)))
   } else {
     body <- resp_body_json(resp)
     if (body$status != "OK") {
-      message(sprintf("Error %s", body$message))
-      return(NULL)
+      stop(body$message)
     } else {
       data <- body$data[[2]] |>
-        build_df() |>
+        build_dataframe() |>
         mutate(level = "kota/kabupaten") |>
         mutate(
           level = case_when(
