@@ -1,21 +1,19 @@
 #' Get list of domain
 #'
 #' @description Retrieve list of national wide BPS domain.
-#' @param token App ID. Please register to https://webapi.bps.go.id/developer/register
+#' @param token App ID.
 #'
 #' @examples
 #' \dontrun{
-#' bps_get_domain(token = Sys.getenv("BPS_APP_ID"))
+#' bps_get_domain(token = "your_secret_token")
 #' }
 #'
 #' @import httr2
 #' @importFrom dplyr mutate case_when
 #' @export
 #'
-bps_get_domain <- function(token, type = "all", ...) {
-  if (missing(token)) {
-    stop(message_token())
-  }
+bps_get_domain <- function(type = "all", ..., token) {
+  if (missing(token)) token <- get_token()
   allowed_type <- c("all", "prov", "kab", "kabbyprov")
   match.arg(type, allowed_type)
   resp <- build_query(service = "domain", token = token, type = type, ...) |>

@@ -6,15 +6,6 @@ base_uri <- function() {
   return("https://webapi.bps.go.id/v1/api/")
 }
 
-#' Token parameter
-#'
-#' RestAPI service token endpoint
-#' @param token App ID
-#'
-token_uri <- function(token) {
-  return(paste("key", token, sep = "/"))
-}
-
 #' Message for asking token
 #'
 #' Asking to BPS WebAPI token and registration message
@@ -22,4 +13,12 @@ token_uri <- function(token) {
 message_token <- function() {
   url_regist = "https://webapi.bps.go.id/developer/register"
   return(sprintf("Register to get token %s", url_regist))
+}
+
+#' Message to refuse domain pattern
+#'
+#' Asking to input acceptable value for domain
+#'
+message_domain <- function() {
+  return("Not acceptable `domain_id`")
 }
