@@ -1,0 +1,24 @@
+Package: rstadata
+Title: Access to BPS Data
+Version: 0.0.0.9000
+Authors@R:
+    c(person(given = "Muhammad Aswan",
+             family = "Syahputra",
+             role = c("aut", "cre"),
+             email = "muhammadaswansyahputra@gmail.com"),
+      person(given = "Andi",
+             family = "Herlan",
+             role = c("aut"),
+             email = "getdata@duck.com"))
+Description: BPS Indonesia WebAPI v1 wrapper.
+License: LICENSE
+URL: https://github.com/indo-r/rstadata
+BugReports: https://github.com/indo-r/rstadata/issues
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.3
+Imports:
+    httr2,
+    dplyr
+Depends:
+    R (>= 4.1.0)
