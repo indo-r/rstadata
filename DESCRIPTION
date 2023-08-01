@@ -1,16 +1,20 @@
 Package: rstadata
-Title: Access to BPS Data
+Title: Interface Access Data Badan Pusat Statistik Indonesia
 Version: 0.0.0.9000
 Authors@R:
     c(person(given = "Muhammad Aswan",
              family = "Syahputra",
              role = c("aut", "cre"),
              email = "muhammadaswansyahputra@gmail.com"),
+      person(given = "Aep",
+             family = "Hidayatuloh",
+             email = "aephidayatuloh.mail@gmail.com",
+             role = "ctb"),
       person(given = "Andi",
              family = "Herlan",
-             role = c("aut"),
+             role = c("aut", "ctb"),
              email = "getdata@duck.com"))
-Description: BPS Indonesia WebAPI v1 wrapper.
+Description: Access to BPS Indonesia Data via WebAPI v1.
 License: LICENSE
 URL: https://github.com/indo-r/rstadata
 BugReports: https://github.com/indo-r/rstadata/issues
