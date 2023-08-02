@@ -55,7 +55,7 @@ build_dataframe <- function(listdata) {
 #' @param query Full query without token
 #' @param token App ID
 #'
-add_token <- function(query, token) {
+add_token <- function(query, token = get_token()) {
   req_url_path_append(query, build_path("key", token, replace = FALSE))
 }
 
@@ -65,4 +65,26 @@ add_token <- function(query, token) {
 get_token <- function() {
   token <- Sys.getenv("BPS_APP_ID")
   if (token == "") stop(message_token()) else token
+}
+
+#' Retrieve more pages
+#'
+#' @description Add token to the end of query
+#' @param query Full query without token
+#' @param pages Number of pages
+#' @param token App ID
+#'
+get_more_pages <- function(query, pages, token = get_token()) {
+  data_more <- list()
+  for (i in 2L:as.integer(pages)) {
+    path <- build_path("page", as.character(i), replace = FALSE)
+    next_query <- query |>
+      req_url_path_append(path)
+    next_body <- next_query |>
+      add_token(token) |>
+      req_perform() |>
+      resp_body_json()
+    data_more[[i]] <- build_dataframe(next_body$data[[2]])
+  }
+  return(do.call(rbind, data_more))
 }

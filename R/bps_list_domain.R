@@ -1,20 +1,22 @@
 #' Get list of domain
 #'
-#' @description Retrieve list of national wide BPS domain.
+#' @description Retrieve list of nation wide BPS domain.
 #' @param type Type to show domain
-#' @param ... Any acceptable WebAPI parameters
+#' @param ... Any acceptable WebAPI parameters: prov
 #' @param token App ID
 #'
 #' @examples
 #' \dontrun{
-#' bps_get_domain(token = "your_secret_token")
+#' bps_list_domain() # return all domains
+#' bps_list_domain(type = "prov")
+#' bps_list_domain(type = "kabbyprov", prov = 3200)
 #' }
 #'
 #' @import httr2
 #' @importFrom dplyr mutate case_when
 #' @export
 #'
-bps_get_domain <- function(type = "all", ..., token) {
+bps_list_domain <- function(type = "all", ..., token) {
   if (missing(token)) token <- get_token()
   allowed_type <- c("all", "prov", "kab", "kabbyprov")
   match.arg(type, allowed_type)
